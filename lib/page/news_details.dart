@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappbrowser/flutter_inappbrowser.dart';
+import 'package:share/share.dart';
 import 'package:zhihu/commom/model/news_details.dart';
 import 'package:zhihu/commom/model/news_story_extra.dart';
 import 'package:zhihu/commom/net/api.dart';
@@ -8,6 +9,7 @@ import 'package:zhihu/commom/router.dart';
 import 'package:zhihu/utils/html_utils.dart';
 import 'package:zhihu/widget/bar_icon_actions.dart';
 
+///文章详情
 class NewsDetailsPage extends StatefulWidget {
   final int newsId;
 
@@ -28,7 +30,6 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
     super.initState();
     _getNewsDetail();
     _getNewsStoryExtra();
-
   }
 
   void _getNewsDetail() {
@@ -41,11 +42,11 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
 
   void _getNewsStoryExtra() {
     httpManager.get(ApiAddress.newsStoryExtra + widget.newsId.toString(),
-        (data) {
-      setState(() {
-        _newsStoryExtra = NewsStoryExtra.fromJson(data);
-      });
-    });
+            (data) {
+          setState(() {
+            _newsStoryExtra = NewsStoryExtra.fromJson(data);
+          });
+        });
   }
 
   @override
@@ -62,20 +63,27 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
           shouldOverrideUrlLoading: (controller, url) {
             if (url.startsWith("http:") || url.startsWith("https:")) {
               Router.push(context, Router.WebView, url);
-            } else {}
+            } else if (url.startsWith("section://")) {
+              List<String> sectionNewInfo = url.split("//");
+
+              Router.push(context, Router.SectionNews, sectionNewInfo[sectionNewInfo.length-1]);
+            }
             return true; //用浏览器打开
           });
     }
 
     final String comments =
-        _newsStoryExtra == null ? "" : _newsStoryExtra.comments.toString();
+    _newsStoryExtra == null ? "" : _newsStoryExtra.comments.toString();
     final String popularity =
-        _newsStoryExtra == null ? "" : _newsStoryExtra.popularity.toString();
+    _newsStoryExtra == null ? "" : _newsStoryExtra.popularity.toString();
 
     return new Scaffold(
       appBar: new AppBar(
         actions: <Widget>[
           new AppBarIcoAction(
+            callback: (){
+              Share.share("${_newsDetails.title}（分享自@知乎日报APP）${_newsDetails.shareUrl}");
+            },
             icon: new Icon(Icons.share, color: Colors.white),
           ),
           new AppBarIcoAction(
@@ -88,7 +96,8 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
             ),
             labelText: comments,
             callback: () {
-              Router.push(context, Router.NewsComment, {'newsId': widget.newsId, 'comments': comments});
+              Router.push(context, Router.NewsComment,
+                  {'newsId': widget.newsId, 'comments': comments});
             },
           ),
           new AppBarIcoAction(

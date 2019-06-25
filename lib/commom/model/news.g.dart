@@ -12,7 +12,9 @@ News _$NewsFromJson(Map<String, dynamic> json) {
       json['type'] as int,
       json['id'] as int,
       json['image'] as String,
-      (json['images'] as List)?.map((e) => e as String)?.toList());
+      (json['images'] as List)?.map((e) => e as String)?.toList(),
+      json['display_date'] as String,
+      json['multipic'] as bool);
 }
 
 Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
@@ -20,5 +22,7 @@ Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
       'type': instance.type,
       'id': instance.id,
       'image': instance.image,
-      'images': instance.images
+      'images': instance.images,
+      'multipic': instance.multipic,
+      'display_date': instance.date
     };

@@ -35,6 +35,8 @@ dependencies:
   path_provider: ^0.5.0+1
   # webview
   flutter_inappbrowser: ^1.2.1
+  # 分享
+  share: ^0.6.1+1
 
 
 dev_dependencies:
@@ -60,6 +62,8 @@ flutter:
     - static/images/praise.png
     - static/images/comment_write.png
     - static/images/dark_comment_empty.png
+    - static/images/account_avatar.png
+    - static/images/home_pic.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -6,12 +6,15 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
+  - share (0.5.2):
+    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_inappbrowser (from `.symlinks/plugins/flutter_inappbrowser/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - share (from `.symlinks/plugins/share/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
@@ -22,12 +25,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/fluttertoast/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  share:
+    :path: ".symlinks/plugins/share/ios"
 
 SPEC CHECKSUMS:
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   flutter_inappbrowser: 93214ba3c0bc9db42e879f808d993b6d3be32379
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
   path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
+  share: 7d22fe8baedfe93aefd864bf0b73f29711fbb0a3
 
 PODFILE CHECKSUM: b7d0755641915265774624f3b3be49c5c073d379
 

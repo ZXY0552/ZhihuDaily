@@ -14,15 +14,28 @@ class HtmlUtils {
         '<img src="${newsDetails.image}" alt="" />'
         '</div>';
 
+    String sectionHtml = "";
+    if (newsDetails.section != null) {
+      sectionHtml = "<div class='bottom-recommend'>"
+          "<a class='recommend-link' href='section://${newsDetails.section.id}' data-story='9712709'>"
+          "<span style='background-image:url(${newsDetails.section.thumbnail})' class='link-image'></span>"
+          "<span class='recommend-link-title'>"
+          "本文来自 : ${newsDetails.section.name} · 合集"
+          "</span>"
+          "</a>"
+          "</div>";
+    }
+
     String html = "<!doctype html>"
         "<html>"
         " <head>"
-        "   <meta charset=\"utf-8\">"
-        "   <meta name=\"viewport\" content=\"user-scalable=no, width=device-width\">"
+        "   <meta charset='utf-8'>"
+        "   <meta name='viewport' content='user-scalable=no, width=device-width'>"
         "$css"
         " </head>"
         "  <body>"
         "${newsDetails.body}"
+        "$sectionHtml"
         "  </body>"
         "</html>";
     html = html.replaceAll("<div class=\"img-place-holder\">", imageHead);
@@ -363,7 +376,7 @@ class HtmlUtils {
                 .view-more a{
                     width: 100%;
                     display: block;
-                    font-size: 16px;
+                    font-size: 13px;
                     height: 30px;
                     line-height: 30px;
                     background: #f0f0f0;
@@ -566,15 +579,13 @@ class HtmlUtils {
                 .highlight .vi { color: #008080 }
                 .highlight .il { color: #009999 }
                 
-                
-                
                 .bottom-recommend {
                   display: none;
                   padding-left: 12px;
                   padding-right: 12px;
                   font-size: 14px;
                   color: #000;
-                  background: #fff;
+                  background: #f0f0f0;
                 }
                 
                 .bottom-recommend a {
@@ -583,21 +594,24 @@ class HtmlUtils {
                   display: block;
                   height: 60px;
                   font-size: 15px;
-                  line-height: 20px;
                   color: #000;
                   text-decoration: none;
-                  border-top: solid 1px #e1e1e1;
+                  line-height: 60px;
                 }
                 
                 .bottom-recommend .link-image {
-                  float: right;
-                  width: 75px;
+                  float: left;
+                  width: 60px;
                   height: 60px;
-                  margin-left: 18px;
                   background-position: 50%;
                   background-size: cover;
                 }
                 
+                .bottom-recommend .recommend-link-title {
+                   margin-left: 8px;
+                   font-size:13px;
+                }
+                    
                 @media (max-width: 480px) {
                   .bottom-recommend {
                     display: block;
@@ -825,11 +839,10 @@ class HtmlUtils {
                     }
                 
                     .bottom-recommend {
-                        border-top: solid 1px #e1e1e1;
-                      background: #fff;
-                        padding-left: 0;
-                        padding-right: 0;
-                        margin: 0 12px;
+                      background: #f0f0f0;
+                      padding-left: 0;
+                      padding-right: 0;
+                      margin: 0px 18px 24px 18px;
                     }
                 
                     .bottom-recommend a {
@@ -837,8 +850,7 @@ class HtmlUtils {
                       padding-top: 0;
                       display: block;
                       border-top: none;
-                      background: #f9f9f9;
-                      padding: 10px;
+                      background: #f0f0f0;
                       font-size: 15px;
                     }
                     .bottom-recommend .bottom-recommend-download-link, .bottom-recommend .bottom-recommend-download-link:hover,

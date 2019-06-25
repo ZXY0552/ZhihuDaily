@@ -15,8 +15,16 @@ class News {
   int id;
   String image;
   List<String> images;
+  @JsonKey(name: "display_date")
+  String date;
+
+  ///是否多图
+  bool multipic;
 
   News.ofTimeTitle(this.title);
 
-  News(this.title, this.type, this.id, this.image, this.images);
+  News(this.title, this.type, this.id, this.image, this.images, this.date,
+      this.multipic);
+
+
 }

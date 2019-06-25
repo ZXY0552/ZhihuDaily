@@ -26,9 +26,7 @@ class HttpManager {
       {String method,
       Map<String, String> params,
       Function errorCallBack}) async {
-    String errorMsg = "";
     int statusCode;
-
     try {
       Response response;
       if (method == GET) {
@@ -55,16 +53,34 @@ class HttpManager {
 
       //处理错误部分
       if (statusCode < 0) {
-        errorMsg = "网络请求错误,状态码:" + statusCode.toString();
-        _handError(errorCallBack, errorMsg);
+        _handError(errorCallBack, "网络错误");
         return;
       }
 
       if (callBack != null) {
         callBack(response.data);
       }
-    } catch (exception) {
-      _handError(errorCallBack, exception.toString());
+    } on DioError catch (e) {
+      String errorMessage = "";
+      switch (e.type) {
+        case DioErrorType.CONNECT_TIMEOUT:
+        case DioErrorType.SEND_TIMEOUT:
+        case DioErrorType.RECEIVE_TIMEOUT:
+          errorMessage = "请求超时";
+          break;
+        case DioErrorType.RESPONSE:
+          errorMessage = "服务器响应错误";
+          break;
+        case DioErrorType.CANCEL:
+          errorMessage = "请求被取消";
+          break;
+        case DioErrorType.DEFAULT:
+          errorMessage = "未知错误";
+          break;
+      }
+      _handError(errorCallBack, errorMessage);
+    } catch (e) {
+      _handError(errorCallBack, "未知错误");
     }
   }
 

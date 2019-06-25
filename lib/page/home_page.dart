@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:zhihu/commom/model/latest.dart';
 import 'package:zhihu/commom/model/news.dart';
 import 'package:zhihu/commom/net/api.dart';
 import 'package:zhihu/commom/net/api_address.dart';
 import 'package:zhihu/commom/router.dart';
 import 'package:zhihu/utils/date_utils.dart';
+import 'package:zhihu/widget/bar_icon_actions.dart';
+import 'package:zhihu/widget/home_drawer.dart';
 import 'package:zhihu/widget/news_item.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,8 +16,58 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: new Text("首页"),
+        title: new Text(
+          "首页",
+          style: new TextStyle(fontSize: 18),
+        ),
+        actions: <Widget>[
+          new AppBarIcoAction(
+            icon: new Icon(Icons.notifications),
+          ),
+          new AppBarIcoAction(
+            callback: () {
+              showMenu(
+                context: context,
+                position: RelativeRect.fromLTRB(
+                    MediaQuery.of(context).size.width,
+                    MediaQuery.of(context).padding.top,
+                    0,
+                    0),
+                items: <PopupMenuItem<String>>[
+                  new PopupMenuItem<String>(
+                    child: new InkWell(
+                      onTap: (){
+                        Fluttertoast.showToast(msg: "没写");
+                        Navigator.pop(context);
+                      },
+                      child: new Container(
+                        height: 32,
+                        width: 96,
+                        child: new Text("夜间模式"),
+                      ),
+                    ),
+                  ),
+                  new PopupMenuItem<String>(
+                    child: new InkWell(
+                      onTap: (){
+                        Fluttertoast.showToast(msg: "也没写");
+                        Navigator.pop(context);
+                      },
+                      child: new Container(
+                        height: 32,
+                        width: 96,
+                        child: new Text("设置选项"),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+            icon: new Icon(Icons.more_vert),
+          ),
+        ],
       ),
+      drawer: new HomeDrawer(),
       body: new HomePageList(),
     );
   }
@@ -43,6 +96,7 @@ class _HomePageListState extends State<HomePageList> {
     _controller.addListener(() {
       var maxScroll = _controller.position.maxScrollExtent;
       var pixels = _controller.position.pixels;
+
       if (maxScroll == pixels) {
         _onNextPage();
       }

@@ -19,7 +19,11 @@ class ApiAddress {
   static String newsShortComments(String newId) =>
       '4/story/$newId/short-comments';
 
-  ///长
+  ///长评论
   static String newsLongComments(String newId) =>
       '4/story/$newId/long-comments';
+
+  ///栏目文章列表
+  static String sectionNews(String sectionId) =>
+      '3/section/$sectionId';
 }

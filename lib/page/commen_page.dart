@@ -6,6 +6,8 @@ import 'package:zhihu/commom/net/api_address.dart';
 import 'package:zhihu/widget/bar_icon_actions.dart';
 import 'package:zhihu/widget/comment_item.dart';
 
+
+///评论页面
 class CommentPage extends StatefulWidget {
   final int newsId;
   final String comments;
@@ -231,8 +233,5 @@ class _CommentList extends StatelessWidget {
       children: divideListItem,
     );
   }
-
-
-
-
 }
+

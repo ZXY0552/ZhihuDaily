@@ -10,6 +10,46 @@ class NewsItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> _imageUrl = _news.images;
+    Widget imageContainer = new Container();
+    Widget image;
+
+    if (_imageUrl.length > 0) {
+      image = new Image.network(
+        _imageUrl[0],
+        width: 105,
+        height: 80,
+        fit: BoxFit.fitWidth,
+      );
+    }
+
+    if (_news.multipic != null && _news.multipic) {
+      imageContainer = new Container(
+        margin: EdgeInsets.only(left: 8),
+        child: new Stack(children: <Widget>[
+          new Stack(
+            children: <Widget>[
+              image,
+
+              ///多图tag
+              new Positioned(
+                child: new Image.asset(
+                  "static/images/home_pic.png",
+                  height: 16,
+                ),
+                right: 0,
+                bottom: 0,
+              ),
+            ],
+          )
+        ]),
+      );
+    } else {
+      imageContainer = new Container(
+        margin: EdgeInsets.only(left: 8),
+        child: image,
+      );
+    }
+
     return new GestureDetector(
       onTap: () {
         Router.push(context, Router.NewsDetails, _news.id);
@@ -22,22 +62,30 @@ class NewsItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               new Expanded(
-                child: new Text(
-                  _news.title,
-                  maxLines: 3,
-                  style: new TextStyle(color: Color(0XFF3B3B3B), fontSize: 17),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              new Container(
-                margin: EdgeInsets.only(left: 8),
-                child: new Image.network(
-                  _imageUrl[0],
-                  width: 80,
+                child: Container(
                   height: 70,
-                  fit: BoxFit.fitWidth,
+                  child: new Stack(
+                    children: <Widget>[
+                      new Text(
+                        _news.title,
+                        maxLines: 2,
+                        style:
+                        new TextStyle(color: Color(0XFF333333), fontSize: 17),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      new Positioned(
+                        child: new Text(_news.date ?? "",style: new TextStyle(
+                          fontSize: 11.5,color: Colors.grey
+                        ),),
+                        bottom: 2,
+                      ),
+                    ],
+                  ),
                 ),
               ),
+
+              ///图片
+              imageContainer,
             ],
           ),
         ),

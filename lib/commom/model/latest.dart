@@ -14,6 +14,8 @@ class LatestNews {
       _$LatestNewsToJson(instance);
 
   String date;
+  int timestamp;
+  String name;
 
   ///列表
   List<News> stories;
@@ -21,5 +23,8 @@ class LatestNews {
   ///轮播图
   List<News> top_stories;
 
-  LatestNews(this.date, this.stories, this.top_stories);
+  LatestNews(this.date, this.timestamp, this.name, this.stories,
+      this.top_stories);
+
+
 }
