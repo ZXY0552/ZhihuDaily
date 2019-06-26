@@ -6,6 +6,7 @@ import 'package:zhihu/commom/model/news_story_extra.dart';
 import 'package:zhihu/commom/net/api.dart';
 import 'package:zhihu/commom/net/api_address.dart';
 import 'package:zhihu/commom/router.dart';
+import 'package:zhihu/commom/style/theme_style.dart';
 import 'package:zhihu/utils/html_utils.dart';
 import 'package:zhihu/widget/bar_icon_actions.dart';
 
@@ -56,7 +57,7 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
       body = new Container();
     } else {
       body = new InAppWebView(
-          initialUrl: HtmlUtils.formatNewsDetailsHtml(_newsDetails),
+          initialUrl: HtmlUtils.formatNewsDetailsHtml(_newsDetails,ThemeStyle.of(context).themeMode),
           initialOptions: {
             "useShouldOverrideUrlLoading": true,
           },

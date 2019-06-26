@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zhihu/commom/model/news.dart';
 import 'package:zhihu/commom/router.dart';
+import 'package:zhihu/commom/style/theme_style.dart';
 
 class NewsItemWidget extends StatelessWidget {
   final News _news;
@@ -69,14 +70,18 @@ class NewsItemWidget extends StatelessWidget {
                       new Text(
                         _news.title,
                         maxLines: 2,
-                        style:
-                        new TextStyle(color: Color(0XFF333333), fontSize: 17),
+                        style: new TextStyle(
+                          color: ThemeStyle.of(context).textColorLightLarge,
+                          fontSize: 18,
+                        ),
                         overflow: TextOverflow.ellipsis,
                       ),
                       new Positioned(
-                        child: new Text(_news.date ?? "",style: new TextStyle(
-                          fontSize: 11.5,color: Colors.grey
-                        ),),
+                        child: new Text(
+                          _news.date ?? "",
+                          style:
+                              new TextStyle(fontSize: 11.5, color:  ThemeStyle.of(context).textColorLightMedium),
+                        ),
                         bottom: 2,
                       ),
                     ],
@@ -105,7 +110,7 @@ class TimeTitleWidget extends StatelessWidget {
       margin: EdgeInsets.only(left: 16, top: 16, bottom: 8),
       child: new Text(
         _title,
-        style: TextStyle(color: Color(0XFF848484), fontSize: 14),
+        style: TextStyle(color: ThemeStyle.of(context).textColorLightMedium, fontSize: 14),
       ),
     );
   }

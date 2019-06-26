@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:zhihu/commom/model/comment.dart';
+import 'package:zhihu/commom/style/theme_style.dart';
 import 'package:zhihu/utils/date_utils.dart';
 
 class CommentItem extends StatelessWidget {
@@ -39,7 +40,7 @@ class CommentItem extends StatelessWidget {
                         child: new Text(
                       comment.author,
                       style: TextStyle(
-                        color: Color(0XFF171717),
+                        color: ThemeStyle.of(context).textColorLightLarge,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -47,11 +48,11 @@ class CommentItem extends StatelessWidget {
 
                     ///点赞数
                     Image.asset("static/images/praise.png",
-                        width: 17, color: Color(0XFFB8B8B8)),
+                        width: 17, color: ThemeStyle.of(context).textColorLightSmall),
                     new Padding(padding: EdgeInsets.only(left: 4)),
                     new Text(
                       comment.likes.toString(),
-                      style: TextStyle(color: Color(0XFFBDBDBD), fontSize: 14),
+                      style: TextStyle(color: ThemeStyle.of(context).textColorLightSmall, fontSize: 14),
                     ),
                   ],
                 ),
@@ -66,7 +67,7 @@ class CommentItem extends StatelessWidget {
                 ///时间
                 new Text(
                   DateUtils.formatTimeToStr(comment.time),
-                  style: TextStyle(color: Color(0XFFBABABA), fontSize: 13.5),
+                  style: TextStyle(color:ThemeStyle.of(context).textColorLightSmall, fontSize: 13.5),
                 ),
               ],
             ))
@@ -89,7 +90,7 @@ class CommentContext extends StatelessWidget {
     ///评论内容
     textSpans.add(new TextSpan(
         text: comment.content,
-        style: TextStyle(color: Color(0XFF1D1D1D), fontSize: 15.5)));
+        style: TextStyle(color:ThemeStyle.of(context).textColorLightMedium, fontSize: 15.5)));
 
     ///所回复的消息
     if (comment.replyTo != null) {
@@ -97,14 +98,14 @@ class CommentContext extends StatelessWidget {
       textSpans.add(new TextSpan(
           text: "\n//${comment.replyTo.author} : ",
           style: TextStyle(
-              color: Color(0XFF171717),
+              color: ThemeStyle.of(context).textColorLightLarge,
               fontWeight: FontWeight.bold,
               fontSize: 15.5)));
 
       ///原消息内容
       textSpans.add(new TextSpan(
           text: comment.replyTo.content,
-          style: TextStyle(color: Color(0XFF777777), fontSize: 15.5)));
+          style: TextStyle(color: ThemeStyle.of(context).textColorLightSmall, fontSize: 15.5)));
     }
 
     return Text.rich(new TextSpan(children: textSpans));

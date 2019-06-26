@@ -3,9 +3,9 @@ import 'package:zhihu/commom/model/comment.dart';
 import 'package:zhihu/commom/model/comment_list.dart';
 import 'package:zhihu/commom/net/api.dart';
 import 'package:zhihu/commom/net/api_address.dart';
+import 'package:zhihu/commom/style/theme_style.dart';
 import 'package:zhihu/widget/bar_icon_actions.dart';
 import 'package:zhihu/widget/comment_item.dart';
-
 
 ///评论页面
 class CommentPage extends StatefulWidget {
@@ -101,17 +101,24 @@ class _CommentPageState extends State<CommentPage> {
         child: new Column(
           children: <Widget>[
             ///长评论数量
-            new Divider(height: 1, color: Color(0XF0B8B8B8)),
+            new Divider(
+              height: 1,
+              color: ThemeStyle.of(context).dividerColor,
+            ),
             new Container(
               padding: EdgeInsets.all(16),
               alignment: Alignment.centerLeft,
               child: new Text(
                 "${longComments.length} 条长评论",
-                style: TextStyle(color: Color(0XFF282828)),
+                style: TextStyle(
+                    color: ThemeStyle.of(context).textColorLightMedium),
                 textAlign: TextAlign.start,
               ),
             ),
-            new Divider(height: 1, color: Color(0XF0B8B8B8)),
+            new Divider(
+              height: 1,
+              color: ThemeStyle.of(context).dividerColor,
+            ),
 
             ///长评论列表
             new _CommentList(
@@ -141,7 +148,10 @@ class _CommentPageState extends State<CommentPage> {
             ),
 
             ///短评论数量
-            new Divider(height: 1, color: Color(0XF0B8B8B8)),
+            new Divider(
+              height: 1,
+              color: ThemeStyle.of(context).dividerColor,
+            ),
             new GestureDetector(
               key: _shortCommentsTitleKey,
               onTap: () {
@@ -154,7 +164,9 @@ class _CommentPageState extends State<CommentPage> {
                     padding: EdgeInsets.all(16),
                     child: new Text(
                       "${shortComments.length} 条短评论",
-                      style: TextStyle(color: Color(0XFF282828)),
+                      style: TextStyle(
+                        color: ThemeStyle.of(context).textColorLightMedium,
+                      ),
                     ),
                   )),
                   new Icon(
@@ -166,7 +178,10 @@ class _CommentPageState extends State<CommentPage> {
                 ],
               ),
             ),
-            new Divider(height: 1, color: Color(0XF0B8B8B8)),
+            new Divider(
+              height: 1,
+              color: ThemeStyle.of(context).dividerColor,
+            ),
 
             ///短评论列表
             new Offstage(
@@ -225,8 +240,10 @@ class _CommentList extends StatelessWidget {
 
     ///添加分割线
     var divideListItem = ListTile.divideTiles(
-            tiles: items, context: context, color: Color(0XF0B8B8B8))
-        .toList();
+      tiles: items,
+      context: context,
+      color: ThemeStyle.of(context).dividerColor,
+    ).toList();
     return new ListView(
       shrinkWrap: true,
       physics: new NeverScrollableScrollPhysics(),
@@ -234,4 +251,3 @@ class _CommentList extends StatelessWidget {
     );
   }
 }
-

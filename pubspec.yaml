@@ -37,6 +37,10 @@ dependencies:
   flutter_inappbrowser: ^1.2.1
   # 分享
   share: ^0.6.1+1
+  # sharedPreferences
+  shared_preferences: ^0.5.3+1
+
+  scoped_model: ^1.0.1
 
 
 dev_dependencies:

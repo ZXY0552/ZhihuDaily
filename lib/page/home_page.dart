@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:zhihu/commom/config/config.dart';
 import 'package:zhihu/commom/model/latest.dart';
 import 'package:zhihu/commom/model/news.dart';
 import 'package:zhihu/commom/net/api.dart';
 import 'package:zhihu/commom/net/api_address.dart';
 import 'package:zhihu/commom/router.dart';
+import 'package:zhihu/commom/style/theme_style.dart';
 import 'package:zhihu/utils/date_utils.dart';
+import 'package:zhihu/utils/shared_preferences_utlis.dart';
 import 'package:zhihu/widget/bar_icon_actions.dart';
 import 'package:zhihu/widget/home_drawer.dart';
 import 'package:zhihu/widget/news_item.dart';
@@ -24,46 +27,48 @@ class HomePage extends StatelessWidget {
           new AppBarIcoAction(
             icon: new Icon(Icons.notifications),
           ),
-          new AppBarIcoAction(
-            callback: () {
-              showMenu(
-                context: context,
-                position: RelativeRect.fromLTRB(
-                    MediaQuery.of(context).size.width,
-                    MediaQuery.of(context).padding.top,
-                    0,
-                    0),
-                items: <PopupMenuItem<String>>[
-                  new PopupMenuItem<String>(
-                    child: new InkWell(
-                      onTap: (){
-                        Fluttertoast.showToast(msg: "没写");
-                        Navigator.pop(context);
-                      },
-                      child: new Container(
-                        height: 32,
-                        width: 96,
-                        child: new Text("夜间模式"),
-                      ),
-                    ),
-                  ),
-                  new PopupMenuItem<String>(
-                    child: new InkWell(
-                      onTap: (){
-                        Fluttertoast.showToast(msg: "也没写");
-                        Navigator.pop(context);
-                      },
-                      child: new Container(
-                        height: 32,
-                        width: 96,
-                        child: new Text("设置选项"),
-                      ),
-                    ),
-                  ),
-                ],
-              );
+          new PopupMenuButton(
+            onSelected: (String value) {
+              if (value == "夜间模式") {
+                if (ThemeStyle.of(context).themeMode == 1) {
+                  ThemeStyle.set(context, 0);
+                  SharedPreferencesUtils.save(Config.SP_THEME_MODE, 0);
+                } else {
+                  ThemeStyle.set(context, 1);
+                  SharedPreferencesUtils.save(Config.SP_THEME_MODE, 1);
+                }
+              } else {
+                Fluttertoast.showToast(msg: "还没写");
+              }
             },
-            icon: new Icon(Icons.more_vert),
+            itemBuilder: (context) {
+              return <PopupMenuItem<String>>[
+                new PopupMenuItem<String>(
+                  value: "夜间模式",
+                  child: new Container(
+                    height: 32,
+                    width: 96,
+                    child: new Text(ThemeStyle.of(context).themeMode == 1
+                        ? "日间模式"
+                        : "夜间模式"),
+                  ),
+                ),
+                new PopupMenuItem<String>(
+                  value: "设置选项",
+                  child: new Container(
+                    height: 32,
+                    width: 96,
+                    child: new Text("设置选项"),
+                  ),
+                ),
+              ];
+            },
+            child: new InkWell(
+              child: new Container(
+                padding: EdgeInsets.only(left: 12, right: 12),
+                child: new Icon(Icons.more_vert),
+              ),
+            ),
           ),
         ],
       ),
@@ -162,25 +167,66 @@ class _HomePageListState extends State<HomePageList> {
       child: new ListView.builder(
         controller: _controller,
         itemBuilder: (context, index) {
+          final double width = MediaQuery.of(context).size.width;
+
           ///下标为0 并且轮播图不为空 显示轮播图
           if (index == 0 && !topStoriesIsEmpty) {
             ///轮播图
             return new Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width * 2 / 3,
-                child: Swiper(
+                width: width,
+                height: width * 2 / 3,
+                child: new Swiper(
                   itemBuilder: (context, index) {
-                    return new Image.network(
-                      _topStories[index].image,
-                      fit: BoxFit.fitWidth,
+                    return new Stack(
+                      children: <Widget>[
+                        ///图片
+                        new Positioned(
+                            left: 0,
+                            top: 0,
+                            bottom: 0,
+                            right: 0,
+                            child: Image.network(
+                              _topStories[index].image,
+                              fit: BoxFit.fitWidth,
+                            )),
+
+                        ///阴影
+                        new Positioned(
+                          left: 0,
+                          top: width * 2 / 3 / 2,
+                          bottom: 0,
+                          right: 0,
+                          child: new Container(
+                              decoration: new BoxDecoration(
+                                  gradient: LinearGradient(
+                            colors: [Colors.transparent, Color(0xA6000000)],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ))),
+                        ),
+
+                        ///标题
+                        new Positioned(
+                            left: 12,
+                            right: 12,
+                            bottom: 32,
+                            child: new Text(
+                              _topStories[index].title,
+                              maxLines: 2,
+                              style: new TextStyle(
+                                fontSize: 21,
+                                color: Colors.white,
+                              ),
+                            )),
+                      ],
                     );
                   },
                   itemCount: _topStories.length,
                   pagination: new SwiperPagination(
                       builder: DotSwiperPaginationBuilder(
-                    color: Colors.black38,
-                    size: 8,
-                    activeSize: 8,
+                    color: Colors.grey,
+                    size: 7,
+                    activeSize: 7,
                     activeColor: Colors.white,
                   )),
                   scrollDirection: Axis.horizontal,
