@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:zhihu/commom/model/latest.dart';
 import 'package:zhihu/commom/model/news.dart';
 import 'package:zhihu/commom/net/api.dart';
@@ -63,6 +64,9 @@ class _SectionNewsState extends State<SectionNewsPage> {
         _timestamp = latestNews.timestamp;
         _stories.addAll(latestNews.stories);
       });
+    }, errorCallBack: (errorMsg) {
+      Fluttertoast.showToast(msg: errorMsg);
+      isLoading = false;
     });
   }
 

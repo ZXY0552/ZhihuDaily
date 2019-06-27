@@ -133,13 +133,13 @@ class _CommentPageState extends State<CommentPage> {
                   children: <Widget>[
                     Image.asset(
                       "static/images/dark_comment_empty.png",
-                      color: Color(0XFFE4E4E4),
+                      color: ThemeStyle.of(context).textColorLightMedium,
                       width: 182,
                     ),
                     new Text(
                       "深度长评虚位以待",
                       style:
-                          new TextStyle(fontSize: 14, color: Color(0XFFE4E4E4)),
+                          new TextStyle(fontSize: 14, color: ThemeStyle.of(context).textColorLightMedium),
                     )
                   ],
                 ),

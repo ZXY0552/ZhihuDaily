@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:zhihu/commom/model/news.dart';
 import 'package:zhihu/commom/router.dart';
@@ -15,8 +16,8 @@ class NewsItemWidget extends StatelessWidget {
     Widget image;
 
     if (_imageUrl.length > 0) {
-      image = new Image.network(
-        _imageUrl[0],
+      image = new CachedNetworkImage(
+        imageUrl: _imageUrl[0],
         width: 105,
         height: 80,
         fit: BoxFit.fitWidth,
@@ -79,8 +80,10 @@ class NewsItemWidget extends StatelessWidget {
                       new Positioned(
                         child: new Text(
                           _news.date ?? "",
-                          style:
-                              new TextStyle(fontSize: 11.5, color:  ThemeStyle.of(context).textColorLightMedium),
+                          style: new TextStyle(
+                              fontSize: 11.5,
+                              color:
+                                  ThemeStyle.of(context).textColorLightMedium),
                         ),
                         bottom: 2,
                       ),
@@ -110,7 +113,8 @@ class TimeTitleWidget extends StatelessWidget {
       margin: EdgeInsets.only(left: 16, top: 16, bottom: 8),
       child: new Text(
         _title,
-        style: TextStyle(color: ThemeStyle.of(context).textColorLightMedium, fontSize: 14),
+        style: TextStyle(
+            color: ThemeStyle.of(context).textColorLightMedium, fontSize: 14),
       ),
     );
   }

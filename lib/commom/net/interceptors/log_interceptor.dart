@@ -6,7 +6,6 @@ class LogsInterceptors extends InterceptorsWrapper {
   onRequest(RequestOptions options) {
     if (Config.DEBUG) {
       print("dio:请求url->>${options.baseUrl}${options.path}");
-      print('dio:请求头->>' + options.headers.toString());
       if (options.data != null) {
         print('dio:请求参数->>' + options.data.toString());
       }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -138,6 +139,9 @@ class _HomePageListState extends State<HomePageList> {
           _onNextPage();
         }
       });
+    }, errorCallBack: (errorMsg) {
+      Fluttertoast.showToast(msg: errorMsg);
+      isLoading = false;
     });
     return null;
   }
@@ -156,6 +160,9 @@ class _HomePageListState extends State<HomePageList> {
         _stories.add(News.ofTimeTitle(DateUtils.formatTimeTitle(_beforeTime)));
         _stories.addAll(latestNews.stories);
       });
+    }, errorCallBack: (errorMsg) {
+      Fluttertoast.showToast(msg: errorMsg);
+      isLoading = false;
     });
   }
 
@@ -185,8 +192,9 @@ class _HomePageListState extends State<HomePageList> {
                             top: 0,
                             bottom: 0,
                             right: 0,
-                            child: Image.network(
-                              _topStories[index].image,
+                            child: new Image(
+                              image: new CachedNetworkImageProvider(
+                                  _topStories[index].image),
                               fit: BoxFit.fitWidth,
                             )),
 

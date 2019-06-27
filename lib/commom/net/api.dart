@@ -1,6 +1,8 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import '../cache_manage.dart';
 import 'api_address.dart';
 import 'interceptors/log_interceptor.dart';
 
@@ -26,21 +28,21 @@ class HttpManager {
       {String method,
       Map<String, String> params,
       Function errorCallBack}) async {
-    int statusCode;
+    ///接口和参数拼接
+    String urlParams = url;
+    if (params != null && params.isNotEmpty) {
+      StringBuffer sb = new StringBuffer("?");
+      params.forEach((key, value) {
+        sb.write("$key" + "=" + "$value" + "&");
+      });
+      String paramStr = sb.toString();
+      paramStr = paramStr.substring(0, paramStr.length - 1);
+      urlParams += paramStr;
+    }
     try {
       Response response;
       if (method == GET) {
-        //组合GET请求的参数
-        if (params != null && params.isNotEmpty) {
-          StringBuffer sb = new StringBuffer("?");
-          params.forEach((key, value) {
-            sb.write("$key" + "=" + "$value" + "&");
-          });
-          String paramStr = sb.toString();
-          paramStr = paramStr.substring(0, paramStr.length - 1);
-          url += paramStr;
-        }
-        response = await _dio.get(url);
+        response = await _dio.get(urlParams);
       } else {
         if (params != null && params.isNotEmpty) {
           response = await _dio.post(url, data: params);
@@ -48,43 +50,38 @@ class HttpManager {
           response = await _dio.post(url);
         }
       }
-
-      statusCode = response.statusCode;
-
-      //处理错误部分
-      if (statusCode < 0) {
-        _handError(errorCallBack, "网络错误");
-        return;
-      }
-
-      if (callBack != null) {
-        callBack(response.data);
-      }
+     await CacheManger().set(urlParams, response.toString());
+      callBack(response.data);
     } on DioError catch (e) {
-      String errorMessage = "";
-      switch (e.type) {
-        case DioErrorType.CONNECT_TIMEOUT:
-        case DioErrorType.SEND_TIMEOUT:
-        case DioErrorType.RECEIVE_TIMEOUT:
-          errorMessage = "请求超时";
-          break;
-        case DioErrorType.RESPONSE:
-          errorMessage = "服务器响应错误";
-          break;
-        case DioErrorType.CANCEL:
-          errorMessage = "请求被取消";
-          break;
-        case DioErrorType.DEFAULT:
-          errorMessage = "未知错误";
-          break;
+      ///请求失败 使用本地缓存
+      String cacheData = await CacheManger().get(urlParams);
+      if (cacheData != null) {
+        callBack(jsonDecode(cacheData));
+      } else {
+        String errorMessage;
+        switch (e.type) {
+          case DioErrorType.CONNECT_TIMEOUT:
+          case DioErrorType.SEND_TIMEOUT:
+          case DioErrorType.RECEIVE_TIMEOUT:
+            errorMessage = "请求超时";
+            break;
+          case DioErrorType.RESPONSE:
+            errorMessage = "服务器响应错误";
+            break;
+          case DioErrorType.CANCEL:
+            errorMessage = "请求被取消";
+            break;
+          case DioErrorType.DEFAULT:
+            errorMessage = "网络连接失败";
+            break;
+        }
+        _handError(errorCallBack, errorMessage);
       }
-      _handError(errorCallBack, errorMessage);
     } catch (e) {
       _handError(errorCallBack, "未知错误");
     }
   }
 
-  //处理异常
   static void _handError(Function errorCallback, String errorMsg) {
     if (errorCallback != null) {
       errorCallback(errorMsg);
@@ -92,6 +89,7 @@ class HttpManager {
       Fluttertoast.showToast(msg: errorMsg);
     }
   }
+
 }
 
 final HttpManager httpManager = new HttpManager();

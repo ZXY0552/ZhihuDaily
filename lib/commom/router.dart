@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zhihu/page/collect_page.dart';
 import 'package:zhihu/page/commen_page.dart';
 import 'package:zhihu/page/news_details.dart';
 import 'package:zhihu/page/section_page.dart';
@@ -9,6 +10,7 @@ class Router {
   static const WebView = "app://webView";
   static const NewsComment = "app://NewsComment";
   static const SectionNews ="app://sectionNews";
+  static const CollectList = "app://CollectList";
 
   Widget _getPage(String url, dynamic params) {
     switch (url) {
@@ -25,6 +27,8 @@ class Router {
         return new SectionNewsPage(
           sectionId: params,
         );
+      case CollectList:
+        return new CollectPage();
     }
   }
 

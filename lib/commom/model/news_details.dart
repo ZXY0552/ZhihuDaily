@@ -20,6 +20,7 @@ class NewsDetails {
   String imageSource;
   String title;
 
+  List<String> images;
   ///封面背景图
   String image;
   @JsonKey(name: "share_url")
@@ -32,6 +33,7 @@ class NewsDetails {
   ///样式
   List<String> css;
 
-  NewsDetails(this.body, this.imageSource, this.title, this.image,
+  NewsDetails(this.body, this.imageSource, this.title, this.images, this.image,
       this.shareUrl, this.id, this.section, this.css);
+
 }

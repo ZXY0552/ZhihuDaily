@@ -39,8 +39,10 @@ dependencies:
   share: ^0.6.1+1
   # sharedPreferences
   shared_preferences: ^0.5.3+1
-
+  # 图片缓存
+  cached_network_image: ^0.8.0
   scoped_model: ^1.0.1
+  sqflite: ^1.1.6+1
 
 
 dev_dependencies:

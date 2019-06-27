@@ -1,6 +1,7 @@
 library news;
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:zhihu/commom/db/collect_db.dart';
 
 part 'news.g.dart';
 
@@ -11,7 +12,6 @@ class News {
   Map<String, dynamic> toJson(News instance) => _$NewsToJson(instance);
 
   String title;
-  int type;
   int id;
   String image;
   List<String> images;
@@ -23,8 +23,12 @@ class News {
 
   News.ofTimeTitle(this.title);
 
-  News(this.title, this.type, this.id, this.image, this.images, this.date,
-      this.multipic);
+  News(this.title, this.id, this.image, this.images, this.date, this.multipic);
 
+  News.ofCollect(CollectData collectData) {
+    title = collectData.title;
+    id = collectData.id;
+    images = [collectData.images];
+  }
 
 }

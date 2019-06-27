@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:zhihu/commom/router.dart';
 import 'package:zhihu/commom/style/theme_style.dart';
 
 class HomeDrawer extends StatefulWidget {
@@ -54,8 +55,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     new Expanded(
                         child: new FlatButton.icon(
                             onPressed: () {
-                              Fluttertoast.showToast(msg: "没写");
                               Navigator.pop(context);
+                              Router.pushNoParams(context, Router.CollectList);
                             },
                             icon: Icon(
                               Icons.star,
@@ -64,12 +65,14 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             label: new Text(
                               "我的收藏",
                               style: new TextStyle(
-                                  color: ThemeStyle.of(context).textColorDark, fontSize: 14,),
+                                color: ThemeStyle.of(context).textColorDark,
+                                fontSize: 14,
+                              ),
                             ))),
                     new Expanded(
                         child: new FlatButton.icon(
                             onPressed: () {
-                              Fluttertoast.showToast(msg: "也没写");
+                              Fluttertoast.showToast(msg: "没写");
                               Navigator.pop(context);
                             },
                             icon: Icon(
@@ -79,7 +82,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             label: new Text(
                               "离线下载",
                               style: new TextStyle(
-                                  color: ThemeStyle.of(context).textColorDark, fontSize: 14,),
+                                color: ThemeStyle.of(context).textColorDark,
+                                fontSize: 14,
+                              ),
                             ))),
                   ],
                 ),

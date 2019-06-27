@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -23,10 +24,11 @@ class CommentItem extends StatelessWidget {
           children: <Widget>[
             ///头像
             new ClipOval(
-                child: Image.network(
-              comment.avatar,
-              width: 40,
-            )),
+              child: new CachedNetworkImage(
+                imageUrl: comment.avatar,
+                width: 40,
+              ),
+            ),
             new Padding(padding: EdgeInsets.only(left: 12)),
             new Expanded(
                 child: new Column(
@@ -48,11 +50,14 @@ class CommentItem extends StatelessWidget {
 
                     ///点赞数
                     Image.asset("static/images/praise.png",
-                        width: 17, color: ThemeStyle.of(context).textColorLightSmall),
+                        width: 17,
+                        color: ThemeStyle.of(context).textColorLightSmall),
                     new Padding(padding: EdgeInsets.only(left: 4)),
                     new Text(
                       comment.likes.toString(),
-                      style: TextStyle(color: ThemeStyle.of(context).textColorLightSmall, fontSize: 14),
+                      style: TextStyle(
+                          color: ThemeStyle.of(context).textColorLightSmall,
+                          fontSize: 14),
                     ),
                   ],
                 ),
@@ -67,7 +72,9 @@ class CommentItem extends StatelessWidget {
                 ///时间
                 new Text(
                   DateUtils.formatTimeToStr(comment.time),
-                  style: TextStyle(color:ThemeStyle.of(context).textColorLightSmall, fontSize: 13.5),
+                  style: TextStyle(
+                      color: ThemeStyle.of(context).textColorLightSmall,
+                      fontSize: 13.5),
                 ),
               ],
             ))
@@ -90,7 +97,9 @@ class CommentContext extends StatelessWidget {
     ///评论内容
     textSpans.add(new TextSpan(
         text: comment.content,
-        style: TextStyle(color:ThemeStyle.of(context).textColorLightMedium, fontSize: 15.5)));
+        style: TextStyle(
+            color: ThemeStyle.of(context).textColorLightMedium,
+            fontSize: 15.5)));
 
     ///所回复的消息
     if (comment.replyTo != null) {
@@ -105,7 +114,9 @@ class CommentContext extends StatelessWidget {
       ///原消息内容
       textSpans.add(new TextSpan(
           text: comment.replyTo.content,
-          style: TextStyle(color: ThemeStyle.of(context).textColorLightSmall, fontSize: 15.5)));
+          style: TextStyle(
+              color: ThemeStyle.of(context).textColorLightSmall,
+              fontSize: 15.5)));
     }
 
     return Text.rich(new TextSpan(children: textSpans));
