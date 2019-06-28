@@ -7,10 +7,10 @@
 ## 截图
 
 ![](screenshot/Jun-28-201911-07-46.gif)
-![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot1.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot2.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot3.png)
-![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot4.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot5.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot6.png)
-![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot7.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot8.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot9.png)
-![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot10.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot11.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/SimulatorScreenShot12.png)
+![](screenshot/SimulatorScreenShot3.png)![](screenshot/SimulatorScreenShot2.png)![](screenshot/SimulatorScreenShot3.png)
+![](screenshot/SimulatorScreenShot4.png)![](screenshot/SimulatorScreenShot5.png)![](screenshot/SimulatorScreenShot6.png)
+![](screenshot/SimulatorScreenShot7.png)![](screenshot/SimulatorScreenShot8.png)![](screenshot/SimulatorScreenShot9.png)
+![](screenshot/SimulatorScreenShot10.png)![](screenshot/SimulatorScreenShot11.png)![](screenshot/SimulatorScreenShot12.png)
 
 ## 实现功能
 
