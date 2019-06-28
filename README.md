@@ -7,10 +7,23 @@
 ## 截图
 
 ![](screenshot/Jun-28-201911-07-46.gif)
-![](screenshot/SimulatorScreenShot3.png)![](screenshot/SimulatorScreenShot2.png)![](screenshot/SimulatorScreenShot3.png)
-![](screenshot/SimulatorScreenShot4.png)![](screenshot/SimulatorScreenShot5.png)![](screenshot/SimulatorScreenShot6.png)
-![](screenshot/SimulatorScreenShot7.png)![](screenshot/SimulatorScreenShot8.png)![](screenshot/SimulatorScreenShot9.png)
-![](screenshot/SimulatorScreenShot10.png)![](screenshot/SimulatorScreenShot11.png)![](screenshot/SimulatorScreenShot12.png)
+<table>
+    <tr>
+        <td> <img src="screenshot/SimulatorScreenShot1.png"> </td>
+        <td> <img src="screenshot/SimulatorScreenShot2.png"> </td>
+        <td> <img src="screenshot/SimulatorScreenShot3.png"> </td>
+    </tr>
+    <tr>
+        <img src="screenshot/SimulatorScreenShot4.png">
+        <img src="screenshot/SimulatorScreenShot5.png">
+        <img src="screenshot/SimulatorScreenShot6.png">
+    </tr>
+    <tr>
+        <img src="screenshot/SimulatorScreenShot7.png">
+        <img src="screenshot/SimulatorScreenShot8.png">
+        <img src="screenshot/SimulatorScreenShot9.png">
+    </tr>
+</table>
 
 ## 实现功能
 
