@@ -9,19 +9,24 @@
 ![](screenshot/Jun-28-201911-07-46.gif)
 <table>
     <tr>
-        <td> <img src="screenshot/SimulatorScreenShot1.png"> </td>
-        <td> <img src="screenshot/SimulatorScreenShot2.png"> </td>
-        <td> <img src="screenshot/SimulatorScreenShot3.png"> </td>
+        <td> <img src="screenshot/SimulatorScreenShot1.png"/> </td>
+        <td> <img src="screenshot/SimulatorScreenShot2.png"/> </td>
+        <td> <img src="screenshot/SimulatorScreenShot3.png"/> </td>
     </tr>
     <tr>
-        <img src="screenshot/SimulatorScreenShot4.png">
-        <img src="screenshot/SimulatorScreenShot5.png">
-        <img src="screenshot/SimulatorScreenShot6.png">
+       <td>  <img src="screenshot/SimulatorScreenShot4.png"> </td>
+       <td>  <img src="screenshot/SimulatorScreenShot5.png"> </td>
+       <td>  <img src="screenshot/SimulatorScreenShot6.png"> </td>
     </tr>
     <tr>
-        <img src="screenshot/SimulatorScreenShot7.png">
-        <img src="screenshot/SimulatorScreenShot8.png">
-        <img src="screenshot/SimulatorScreenShot9.png">
+       <td>  <img src="screenshot/SimulatorScreenShot7.png"> </td>
+       <td>  <img src="screenshot/SimulatorScreenShot8.png"> </td>
+       <td>  <img src="screenshot/SimulatorScreenShot9.png"> </td>
+    </tr>
+    <tr>
+       <td>  <img src="screenshot/SimulatorScreenShot10.png"> </td>
+       <td>  <img src="screenshot/SimulatorScreenShot11.png"> </td>
+       <td>  <img src="screenshot/SimulatorScreenShot12.png"> </td>
     </tr>
 </table>
 
