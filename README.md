@@ -6,11 +6,11 @@
 
 ## 截图
 
-![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Jun-28-2019 11-07-46.gif)
-![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 1.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 2.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 3.png)
-![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 4.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 5.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 6.png)
-![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 7.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 8.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 9.png)
-![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 10.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 11.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator Screen Shot 12.png)
+![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Jun-28-2019%11-07-46.gif)
+![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%1.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%2.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%3.png)
+![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%4.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%5.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%6.png)
+![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%7.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%8.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%9.png)
+![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%10.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%11.png)![](https://github.com/ZXY0552/ZhihuDaily/screenshot/Simulator%Screen%Shot%12.png)
 
 ## 实现功能
 
