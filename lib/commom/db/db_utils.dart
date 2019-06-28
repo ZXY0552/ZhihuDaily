@@ -83,7 +83,6 @@ class DBUtils {
     return await _db.delete(tableName, where: "$key = ?", whereArgs: [val]);
   }
 
-  ///删除清理
   Future<int> deleteAll() async {
     await open();
     return await _db.delete(tableName);

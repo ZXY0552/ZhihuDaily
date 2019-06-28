@@ -4,6 +4,7 @@ import 'package:zhihu/commom/model/news.dart';
 import 'package:zhihu/commom/style/theme_style.dart';
 import 'package:zhihu/widget/news_item.dart';
 
+///本地收藏列表
 class CollectPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

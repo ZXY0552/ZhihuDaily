@@ -2,8 +2,12 @@ import 'package:quiver/cache.dart';
 
 import 'db/cache_db.dart';
 
+///缓存管理
 class CacheManger {
+  ///内存缓存
   MapCache<String, String> _cacheMap = MapCache();
+
+  ///数据库缓存
   CacheDb _cacheDb;
 
   static final CacheManger _singleton = CacheManger._internal();

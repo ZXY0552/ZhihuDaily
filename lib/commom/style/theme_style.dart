@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:zhihu/commom/config/config.dart';
-import 'package:zhihu/utils/shared_preferences_utlis.dart';
+
 
 class ThemeStyle extends Model {
   int themeMode;

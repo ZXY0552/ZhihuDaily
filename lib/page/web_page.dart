@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappbrowser/flutter_inappbrowser.dart';
 
-///h5
+///WebView
 class WebViewPage extends StatefulWidget {
   final String url;
 

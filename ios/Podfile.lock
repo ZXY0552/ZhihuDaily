@@ -1,7 +1,4 @@
 PODS:
-  - connectivity (0.0.1):
-    - Flutter
-    - Reachability
   - Flutter (1.0.0)
   - flutter_inappbrowser (0.0.1):
     - Flutter
@@ -12,7 +9,6 @@ PODS:
   - FMDB/standard (2.7.5)
   - path_provider (0.0.1):
     - Flutter
-  - Reachability (3.2)
   - share (0.5.2):
     - Flutter
   - shared_preferences (0.0.1):
@@ -22,7 +18,6 @@ PODS:
     - FMDB (~> 2.7.2)
 
 DEPENDENCIES:
-  - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_inappbrowser (from `.symlinks/plugins/flutter_inappbrowser/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -34,11 +29,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FMDB
-    - Reachability
 
 EXTERNAL SOURCES:
-  connectivity:
-    :path: ".symlinks/plugins/connectivity/ios"
   Flutter:
     :path: ".symlinks/flutter/ios"
   flutter_inappbrowser:
@@ -55,13 +47,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
-  connectivity: c72716e202a1225ec4810740d5cb56b8ae3bf4cc
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   flutter_inappbrowser: 93214ba3c0bc9db42e879f808d993b6d3be32379
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
-  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   share: 7d22fe8baedfe93aefd864bf0b73f29711fbb0a3
   shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
   sqflite: ff1d9da63c06588cc8d1faf7256d741f16989d5a

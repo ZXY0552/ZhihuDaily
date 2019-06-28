@@ -1,16 +1,44 @@
-# zhihu
+# Flutter版高仿知乎日报
 
-A new Flutter application.
+高仿知乎日报，UI基本和Android端的知乎日报一致。新手小白的练习demo，代码十分简单。
 
-## Getting Started
+[API来源](https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90)
 
-This project is a starting point for a Flutter application.
+## 截图
 
-A few resources to get you started if this is your first Flutter project:
+![](screenshot/Jun-28-2019 11-07-46.gif)
+![](screenshot/Simulator Screen Shot 1.png)![](screenshot/Simulator Screen Shot 2.png)![](screenshot/Simulator Screen Shot 3.png)
+![](screenshot/Simulator Screen Shot 4.png)![](screenshot/Simulator Screen Shot 5.png)![](screenshot/Simulator Screen Shot 6.png)
+![](screenshot/Simulator Screen Shot 7.png)![](screenshot/Simulator Screen Shot 8.png)![](screenshot/Simulator Screen Shot 9.png)
+![](screenshot/Simulator Screen Shot 10.png)![](screenshot/Simulator Screen Shot 11.png)![](screenshot/Simulator Screen Shot 12.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## 实现功能
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* 基本数据展示。
+* 本地添加收藏和收藏列表。
+* 评论列表，只能展示无法评论。
+* 夜间模式。
+* 本地数据缓存，网络请求失败的情况下会加载已经缓存的数据。
+* 专栏新闻列表。
+
+## 未完成
+
+* 离线下载（查看过的能离线缓存，但不能主动点离线下载缓存数据）。
+* 设置页面（无图模式，清除缓存，大号字等）。
+* 新闻列表阅读记录，看过的标题变色。
+* 还有一些受接口限制无法完成的比如专栏、账号相关（登录、点赞、评论，通知，推送）。
+* 启动页面，启动图接口无数据返回也没有写。
+* 界面很多细节可以还以优化，iOS、Android不同平台之间UI的本地化。
+
+# 使用的库
+
+* [json_annotation](https://pub.dev/packages/json_annotation) JSON序列化
+* [fluttertoast](https://pub.dev/packages/fluttertoast) toast
+* [flutter_swiper](https://pub.dev/packages/flutter_swiper) 轮播图
+* [dio](https://pub.dev/packages/dio) 网络请求框架
+* [flutter_inappbrowser](https://pub.dev/packages/flutter_inappbrowser) webview
+* [share](https://pub.dev/packages/share) 分享
+* [shared_preferences](https://pub.dev/packages/shared_preferences) 本地数据缓存
+* [cached_network_image](https://pub.dev/packages/cached_network_image) 图片缓存加载
+* [scoped_model](https://pub.dev/packages/scoped_model) 数据传递
+* [sqflite](https://pub.dev/packages/sqflite) 本地sqlite

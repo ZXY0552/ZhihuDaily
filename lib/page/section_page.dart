@@ -6,6 +6,7 @@ import 'package:zhihu/commom/net/api.dart';
 import 'package:zhihu/commom/net/api_address.dart';
 import 'package:zhihu/widget/news_item.dart';
 
+///专栏的新闻列表
 class SectionNewsPage extends StatefulWidget {
   final String sectionId;
 

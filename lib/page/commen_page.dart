@@ -47,8 +47,9 @@ class _CommentPageState extends State<CommentPage> {
 
         ///滑动的位置等于 当前滑动的位置（这个是相对于父组件的位置） 加上当前短评论的title离AppBar的距离
         ///当前短评论的title离AppBar的距离 等于短评论的title的底部距离（相对于屏幕）- 短评论的titl的高度 在 -AppBar的高度
-        ///最后加上 通栏的高度
+        ///最后- 通栏的高度
 
+        //TODO 好像有点问题 计算的不对
         double offsetPosition = _scrollController.position.pixels +
             offset.dy -
             size.height -
@@ -138,8 +139,9 @@ class _CommentPageState extends State<CommentPage> {
                     ),
                     new Text(
                       "深度长评虚位以待",
-                      style:
-                          new TextStyle(fontSize: 14, color: ThemeStyle.of(context).textColorLightMedium),
+                      style: new TextStyle(
+                          fontSize: 14,
+                          color: ThemeStyle.of(context).textColorLightMedium),
                     )
                   ],
                 ),

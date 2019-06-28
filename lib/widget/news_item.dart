@@ -4,6 +4,7 @@ import 'package:zhihu/commom/model/news.dart';
 import 'package:zhihu/commom/router.dart';
 import 'package:zhihu/commom/style/theme_style.dart';
 
+///新闻item
 class NewsItemWidget extends StatelessWidget {
   final News _news;
 

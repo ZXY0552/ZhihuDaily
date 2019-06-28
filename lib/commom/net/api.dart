@@ -78,6 +78,7 @@ class HttpManager {
         _handError(errorCallBack, errorMessage);
       }
     } catch (e) {
+      print(e.toString());
       _handError(errorCallBack, "未知错误");
     }
   }
