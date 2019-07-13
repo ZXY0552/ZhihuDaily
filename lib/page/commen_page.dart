@@ -29,6 +29,7 @@ class _CommentPageState extends State<CommentPage> {
   ScrollController _scrollController;
 
   GlobalKey _shortCommentsTitleKey = GlobalKey();
+  GlobalKey _scrollKey = GlobalKey();
 
   ///短评论展开关闭监听
   _shortCommentsVisibleChange() {
@@ -42,20 +43,15 @@ class _CommentPageState extends State<CommentPage> {
 
         RenderBox box =
             _shortCommentsTitleKey.currentContext.findRenderObject();
-        Offset offset = box.localToGlobal(Offset.zero);
-        Size size = box.size;
 
-        ///滑动的位置等于 当前滑动的位置（这个是相对于父组件的位置） 加上当前短评论的title离AppBar的距离
-        ///当前短评论的title离AppBar的距离 等于短评论的title的底部距离（相对于屏幕）- 短评论的titl的高度 在 -AppBar的高度
-        ///最后- 通栏的高度
+        ///获取位置偏移，基于 ancestor: SingleChildScrollView 的 RenderObject()
+        double offsetDy = box
+            .localToGlobal(Offset.zero,
+                ancestor: _scrollKey.currentContext.findRenderObject()).dy;
 
-        //TODO 好像有点问题 计算的不对
-        double offsetPosition = _scrollController.position.pixels +
-            offset.dy -
-            size.height -
-            MediaQuery.of(context).padding.top;
-
-        _scrollController.animateTo(offsetPosition,
+        ///计算真实位移
+        var offset = offsetDy + _scrollController.offset;
+        _scrollController.animateTo(offset,
             duration: Duration(milliseconds: 300), curve: Curves.linear);
       }
     });
@@ -98,6 +94,7 @@ class _CommentPageState extends State<CommentPage> {
             ),
           ]),
       body: new SingleChildScrollView(
+        key: _scrollKey,
         controller: _scrollController,
         child: new Column(
           children: <Widget>[
