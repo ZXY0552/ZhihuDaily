@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inappbrowser/flutter_inappbrowser.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 ///WebView
 class WebViewPage extends StatefulWidget {
@@ -26,16 +26,17 @@ class _WebViewPageState extends State<WebViewPage> {
       ),
       body: new InAppWebView(
         initialUrl: widget.url,
-        initialOptions: {
-          "useShouldOverrideUrlLoading": true,
-        },
-        shouldOverrideUrlLoading: (controller, url) {
+        initialOptions: new InAppWebViewGroupOptions(
+          crossPlatform: new InAppWebViewOptions(
+                useShouldOverrideUrlLoading: true,
+          )
+        ),
+        shouldOverrideUrlLoading: (controller, url) async {
           ///拦截唤起知乎app的scheme
-          if (url.startsWith("zhihu://")) {
-            return true;
+          if (url.url.startsWith("zhihu://")) {
+            return ShouldOverrideUrlLoadingAction.CANCEL;
           } else {
-            controller.loadUrl(url);
-            return false;
+            return ShouldOverrideUrlLoadingAction.ALLOW;
           }
         },
         onProgressChanged: (controller, progress) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inappbrowser/flutter_inappbrowser.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share/share.dart';
 import 'package:zhihu/commom/db/collect_db.dart';
@@ -104,19 +104,22 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
       body = new InAppWebView(
           initialUrl: HtmlUtils.formatNewsDetailsHtml(
               _newsDetails, ThemeStyle.of(context).themeMode),
-          initialOptions: {
-            "useShouldOverrideUrlLoading": true,
-          },
-          shouldOverrideUrlLoading: (controller, url) {
-            if (url.startsWith("http:") || url.startsWith("https:")) {
+          initialOptions: new InAppWebViewGroupOptions(
+            crossPlatform: new InAppWebViewOptions(
+              useShouldOverrideUrlLoading: true,
+            )
+          ),
+          shouldOverrideUrlLoading: (controller, url) async {
+            var urlPath = url.url;
+            if (urlPath.startsWith("http:") || urlPath.startsWith("https:")) {
               Router.push(context, Router.WebView, url);
-            } else if (url.startsWith("section://")) {
-              List<String> sectionNewInfo = url.split("//");
+            } else if (urlPath.startsWith("section://")) {
+              List<String> sectionNewInfo = urlPath.split("//");
 
               Router.push(context, Router.SectionNews,
                   sectionNewInfo[sectionNewInfo.length - 1]);
             }
-            return true; //用浏览器打开
+            return ShouldOverrideUrlLoadingAction.CANCEL; //用浏览器打开
           });
     }
 

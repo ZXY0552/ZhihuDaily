@@ -3,7 +3,7 @@ import 'package:zhihu/commom/config/config.dart';
 
 class LogsInterceptors extends InterceptorsWrapper {
   @override
-  onRequest(RequestOptions options) {
+  onRequest(RequestOptions options) async{
     if (Config.DEBUG) {
       print("dio:请求url->>${options.baseUrl}${options.path}");
       if (options.data != null) {
@@ -14,7 +14,7 @@ class LogsInterceptors extends InterceptorsWrapper {
   }
 
   @override
-  onResponse(Response response) {
+  onResponse(Response response) async{
     if (Config.DEBUG) {
       if (response != null) {
         print('dio:返回参数->>' + response.toString());
@@ -24,7 +24,7 @@ class LogsInterceptors extends InterceptorsWrapper {
   }
 
   @override
-  onError(DioError err) {
+  onError(DioError err) async{
     if (Config.DEBUG) {
       print('dio:请求异常->>' + err.toString());
       print('dio:请求异常信息->>' + err.response?.toString() ?? "");
