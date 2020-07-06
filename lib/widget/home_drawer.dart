@@ -56,7 +56,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         child: new FlatButton.icon(
                             onPressed: () {
                               Navigator.pop(context);
-                              Router.pushNoParams(context, Router.CollectList);
+                              Router().pushNoParams(context, Router.CollectList);
                             },
                             icon: Icon(
                               Icons.star,

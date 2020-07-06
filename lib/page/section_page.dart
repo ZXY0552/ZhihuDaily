@@ -57,7 +57,7 @@ class _SectionNewsState extends State<SectionNewsPage> {
           "${ApiAddress.sectionNews(widget.sectionId)}/before/${_timestamp.toString()}";
     }
 
-    httpManager.get(uri, (data) {
+    httpManager.enqueue(uri, (data) {
       LatestNews latestNews = LatestNews.fromJson(data);
       setState(() {
         _title = latestNews.name;

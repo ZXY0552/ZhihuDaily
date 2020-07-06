@@ -62,14 +62,14 @@ class _CommentPageState extends State<CommentPage> {
     super.initState();
     shortCommentsVisible.addListener(_shortCommentsVisibleChange);
     _scrollController = new ScrollController();
-    httpManager.get(ApiAddress.newsLongComments(widget.newsId.toString()),
+    httpManager.enqueue(ApiAddress.newsLongComments(widget.newsId.toString()),
         (data) {
       setState(() {
         longComments = CommentList.fromJson(data).comments;
       });
     });
 
-    httpManager.get(ApiAddress.newsShortComments(widget.newsId.toString()),
+    httpManager.enqueue(ApiAddress.newsShortComments(widget.newsId.toString()),
         (data) {
       setState(() {
         shortComments = CommentList.fromJson(data).comments;

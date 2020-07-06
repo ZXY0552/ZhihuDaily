@@ -79,7 +79,7 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
   }
 
   void _getNewsDetail() {
-    httpManager.get(ApiAddress.newsDetails + widget.newsId.toString(), (data) {
+    httpManager.enqueue(ApiAddress.newsDetails + widget.newsId.toString(), (data) {
       setState(() {
         _newsDetails = NewsDetails.fromJson(data);
       });
@@ -87,7 +87,7 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
   }
 
   void _getNewsStoryExtra() {
-    httpManager.get(ApiAddress.newsStoryExtra + widget.newsId.toString(),
+    httpManager.enqueue(ApiAddress.newsStoryExtra + widget.newsId.toString(),
         (data) {
       setState(() {
         _newsStoryExtra = NewsStoryExtra.fromJson(data);
@@ -112,11 +112,11 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
           shouldOverrideUrlLoading: (controller, url) async {
             var urlPath = url.url;
             if (urlPath.startsWith("http:") || urlPath.startsWith("https:")) {
-              Router.push(context, Router.WebView, url);
+              Router().push(context, Router.WebView, url);
             } else if (urlPath.startsWith("section://")) {
               List<String> sectionNewInfo = urlPath.split("//");
 
-              Router.push(context, Router.SectionNews,
+              Router().push(context, Router.SectionNews,
                   sectionNewInfo[sectionNewInfo.length - 1]);
             }
             return ShouldOverrideUrlLoadingAction.CANCEL; //用浏览器打开
@@ -156,7 +156,7 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
             ),
             labelText: comments,
             callback: () {
-              Router.push(context, Router.NewsComment,
+              Router().push(context, Router.NewsComment,
                   {'newsId': widget.newsId, 'comments': comments});
             },
           ),

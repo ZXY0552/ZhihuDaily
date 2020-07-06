@@ -122,7 +122,7 @@ class _HomePageListState extends State<HomePageList> {
       ///延迟一秒 网速太快 下拉刷新框缩回去太快了
       await Future.delayed(Duration(seconds: 1));
     }
-    httpManager.get(ApiAddress.newsLatest, (data) {
+    httpManager.enqueue(ApiAddress.newsLatest, (data) {
       LatestNews latestNews = LatestNews.fromJson(data);
       setState(() {
         isLoading = false;
@@ -152,7 +152,7 @@ class _HomePageListState extends State<HomePageList> {
       return;
     }
     isLoading = true;
-    httpManager.get(ApiAddress.newsBefore + _beforeTime, (data) {
+    httpManager.enqueue(ApiAddress.newsBefore + _beforeTime, (data) {
       LatestNews latestNews = LatestNews.fromJson(data);
       setState(() {
         isLoading = false;
@@ -241,8 +241,8 @@ class _HomePageListState extends State<HomePageList> {
                   autoplay: !topStoriesIsEmpty,
                   autoplayDelay: 5000,
                   onTap: (index) {
-                    Router.push(
-                        context, Router.NewsDetails, _topStories[index].id);
+                    Router().push(
+                        context, Router.NEWS_DETAILS_PATH, _topStories[index].id);
                   },
                 ));
           }

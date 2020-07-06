@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../cache_manage.dart';
+import 'NetRespons.dart';
 import 'api_address.dart';
 import 'interceptors/log_interceptor.dart';
 
@@ -13,21 +14,32 @@ class HttpManager {
   Dio _dio = new Dio(new BaseOptions(
       baseUrl: ApiAddress.host, receiveTimeout: 3000, connectTimeout: 5000));
 
-  HttpManager() {
+  static HttpManager httpManager = new HttpManager._();
+
+  HttpManager._() {
     _dio.interceptors.add(new LogsInterceptors());
   }
 
-  //get请求
-  void get(String url, Function callBack,
-      {Map<String, String> params, Function errorCallBack}) async {
-    _request(url, callBack,
-        method: GET, params: params, errorCallBack: errorCallBack);
+  factory HttpManager() {
+    return httpManager;
   }
 
-  void _request(String url, Function callBack,
-      {String method,
-      Map<String, String> params,
-      Function errorCallBack}) async {
+  Future<NetResponse> execute(String url, {Map<String, String> params}) async {
+    return await _request(url, params: params);
+  }
+
+  //get请求
+  Future<Null> enqueue(String url, Function callBack,
+      {Map<String, String> params, Function errorCallBack}) async {
+    NetResponse netResponse = await _request(url, params: params);
+    if (netResponse.isSuccess) {
+      callBack(netResponse.data);
+    } else {
+      _handError(errorCallBack, netResponse.errorMessage);
+    }
+  }
+
+  Future<NetResponse> _request(String url, {Map<String, String> params}) async {
     ///接口和参数拼接
     String urlParams = url;
     if (params != null && params.isNotEmpty) {
@@ -39,24 +51,17 @@ class HttpManager {
       paramStr = paramStr.substring(0, paramStr.length - 1);
       urlParams += paramStr;
     }
+
     try {
       Response response;
-      if (method == GET) {
-        response = await _dio.get(urlParams);
-      } else {
-        if (params != null && params.isNotEmpty) {
-          response = await _dio.post(url, data: params);
-        } else {
-          response = await _dio.post(url);
-        }
-      }
-     await CacheManger().set(urlParams, response.toString());
-      callBack(response.data);
+      response = await _dio.get(urlParams);
+      CacheManger().set(urlParams, response.toString());
+      return new NetResponse(true, data: response.data);
     } on DioError catch (e) {
       ///请求失败 使用本地缓存
       String cacheData = await CacheManger().get(urlParams);
       if (cacheData != null) {
-        callBack(jsonDecode(cacheData));
+        return new NetResponse(true, data: jsonDecode(cacheData));
       } else {
         String errorMessage;
         switch (e.type) {
@@ -75,13 +80,18 @@ class HttpManager {
             errorMessage = "网络连接失败";
             break;
         }
-        _handError(errorCallBack, errorMessage);
+        return new NetResponse(false, errorMessage: errorMessage);
       }
     } catch (e) {
       print(e.toString());
-      _handError(errorCallBack, "未知错误");
+      return new NetResponse(false, errorMessage: "未知错误");
     }
   }
+
+  void _requestEnqueue(String url, Function callBack,
+      {String method,
+      Map<String, String> params,
+      Function errorCallBack}) async {}
 
   static void _handError(Function errorCallback, String errorMsg) {
     if (errorCallback != null) {
@@ -90,7 +100,6 @@ class HttpManager {
       Fluttertoast.showToast(msg: errorMsg);
     }
   }
-
 }
 
 final HttpManager httpManager = new HttpManager();

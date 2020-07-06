@@ -21,6 +21,7 @@ import io.flutter.view.FlutterView;
 class MethodChannelPlugin implements MethodChannel.MethodCallHandler {
     private volatile static MethodChannelPlugin plugin;
     private MethodChannel methodChannel;
+    private MethodChannelRegistryConfig channelRegistryConfig;
 
     public static MethodChannelPlugin newInstance() {
         if (plugin == null) {
@@ -37,24 +38,26 @@ class MethodChannelPlugin implements MethodChannel.MethodCallHandler {
     public void register(@NonNull MethodChannelRegistryConfig channelRegistryConfig) {
         methodChannel = new MethodChannel(channelRegistryConfig.getFlutterView(), channelRegistryConfig.getChannel());
         methodChannel.setMethodCallHandler(this);
+        this.channelRegistryConfig = channelRegistryConfig;
     }
 
-    public void unregister(@NonNull MethodChannelRegistryConfig channelRegistryConfig) {
+    public void unregister() {
         methodChannel = null;
+        channelRegistryConfig = null;
     }
 
     public void invokeMethod(@NonNull String method, MethodChannel.Result result) {
-        methodChannel.invokeMethod(method, null, result);
+        invokeMethod(method, new Object(), result);
     }
 
     public void invokeMethod(@NonNull String method, Object arguments, MethodChannel.Result result) {
         methodChannel.invokeMethod(method, arguments, result);
     }
 
-
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         Log.e("zxy", call.method + " " + call.arguments);
+        channelRegistryConfig.onMethodCall(call,result);
     }
 
     public interface MethodChannelRegistryConfig {

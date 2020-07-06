@@ -55,7 +55,7 @@ class NewsItemWidget extends StatelessWidget {
 
     return new GestureDetector(
       onTap: () {
-        Router.push(context, Router.NewsDetails, _news.id);
+        Router().push(context, Router.NEWS_DETAILS_PATH, _news.id);
       },
       child: new Card(
         margin: EdgeInsets.only(left: 8, right: 8, top: 6, bottom: 6),
